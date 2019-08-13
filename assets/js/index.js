@@ -18,7 +18,7 @@ const closeModal = (e) => {
     e.preventDefault();
     modal.style.display = 'none';
     modal.setAttribute('aria-hidden', 'true');
-    modal.setAttribute('aria-modal');
+    modal.removeAttribute('aria-modal');
     modal.removeEventListener('click', closeModal);
     modal.querySelector('.js-modal-close').removeEventListener('click', closeModal)
     modal.querySelector('.js-modal-stop').removeEventListener('click', stopPropagation)
@@ -36,3 +36,8 @@ document.querySelectorAll('.js-modal').forEach(elem => {
 
 
 //fermer en appuyant sur la touche echap
+window.addEventListener('keydown', (e) => {
+    if(e.key === 'Escape' || e.key === 'Esc') {
+        closeModal(e);
+    }
+})
