@@ -16,13 +16,16 @@ const openModal = (e) => {
 const closeModal = (e) => {
     if(modal === null) return
     e.preventDefault();
-    modal.style.display = 'none';
+    
+    window.setTimeout( ()=> {
+        modal.style.display = 'none';
+        modal = null
+    }, 500)
     modal.setAttribute('aria-hidden', 'true');
     modal.removeAttribute('aria-modal');
     modal.removeEventListener('click', closeModal);
     modal.querySelector('.js-modal-close').removeEventListener('click', closeModal)
     modal.querySelector('.js-modal-stop').removeEventListener('click', stopPropagation)
-    modal = null;
 }
 
 const stopPropagation = (e) => {
